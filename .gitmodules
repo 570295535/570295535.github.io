@@ -1,3 +1,0 @@
-[submodule "http-file-server"]
-	path = http-file-server
-	url = git@github.com:hanxi/http-file-server.git
