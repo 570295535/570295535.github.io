@@ -78,8 +78,7 @@ setFooter = function()
 {
     var footer = document.getElementById("footer");
     footer.innerHTML = '<span>\
-        Copyright © 2015-2016 <a href="http://github.com/hanxi" target="_blank">hanxi</a>.\
-        Powered by <a href="http://37.com" target="_blank">tlxserver</a>.\
+        Copyright © 2015-2016 肖施主.\
         </span>';
 }
 
