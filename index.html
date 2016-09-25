@@ -1,68 +1,15 @@
 <html>
 
 <head><meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-</head><body>
+
+<script type="text/javascript" src="https://raw.githubusercontent.com/eligrey/FileSaver.js/master/FileSaver.js"></script></head><body>
 
 <div id="showTxt"></div>
 
 
 <script>
-function Ajax(){
-//随便用用的ajax读取函数
-//Author: 扎俊
-//Email:men_779@126.com
-//Question: http://hi.baidu.com/men779/
- this.url=arguments[0]||"";
- this.callback=arguments[1]||callAjaxBack;
- this.method=arguments[2]||"GET";
-var xThis=this; 
- function callAjaxBack(){}
- var xmlHttp;
-  try{
-    // Firefox, Opera 8.0+, Safari
-  xmlHttp=new XMLHttpRequest();
-  }
-  catch (e){ 
-   // Internet Explorer
-    try
-    {
-    xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
-    }
-    catch (e){
- 
-    try
-    {
-    xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    catch (e){
-    alert("Some Error Detected!");
-    return null;
-    }
-    }
-  }
-   
-    xmlHttp.onreadystatechange=function()
-      {
-   if(xmlHttp.readyState==4)
-        {
-     xThis.callback(xmlHttp.responseText);
-     }
-      }
-    xmlHttp.open(this.method.toUpperCase(),this.url,false);
-    xmlHttp.send(null);
- } 
-
-Ajax("./123.txt",showTxtPre);
-
-
-function showTxtPre(txtData){
-  t=txtData.replace(/\s+/g,'').replace(/\r\n/g,'').replace(/　　/g,'').substr(1,2000);
-  //在上面这句最后的substr的参数里设定需要开始的位置和字数。
-  //演示的是从1开始，取2000个除掉空白和换行外的字符。
-  document.getElementById("showTxt").innerHTML=t;
-}
-
-
+var blob = new Blob(["Hello, world!"], {type: "text/plain;charset=utf-8"});
+saveAs(blob, "hello world.txt");
 </script>
   </body>
   </html>
