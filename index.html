@@ -1,40 +1,68 @@
-锘�<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-<title>1.html</title>
+<html>
+
+<head><meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+</head><body>
+
+<div id="showTxt"></div>
+
+
 <script>
-    function show(){
-        var obj = document.getElementById("myDiv");
-        showModelessDialog("2.html",obj,"dialogWidth=600px;dialogHeight=600px");
+function Ajax(){
+//随便用用的ajax读取函数
+//Author: 扎俊
+//Email:men_779@126.com
+//Question: http://hi.baidu.com/men779/
+ this.url=arguments[0]||"";
+ this.callback=arguments[1]||callAjaxBack;
+ this.method=arguments[2]||"GET";
+var xThis=this; 
+ function callAjaxBack(){}
+ var xmlHttp;
+  try{
+    // Firefox, Opera 8.0+, Safari
+  xmlHttp=new XMLHttpRequest();
+  }
+  catch (e){ 
+   // Internet Explorer
+    try
+    {
+    xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
     }
-</script>
-</head>
+    catch (e){
  
-<body>
-    <div id="myDiv">
-        <table width="200" border="1">
-            <tr>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-                <td>4</td>
-            </tr>
-            <tr>
-                <td>a</td>
-                <td>b</td>
-                <td>c</td>
-                <td>d</td>
-            </tr>
-            <tr>
-                <td>A</td>
-                <td>B</td>
-                <td>C</td>
-                <td>D</td>
-            </tr>
-        </table>
-    </div>
-    <br/>
-    <input type="button" id="input1" value="click" onclick="show()"/>
-</body>
-</html>
+    try
+    {
+    xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    catch (e){
+    alert("Some Error Detected!");
+    return null;
+    }
+    }
+  }
+   
+    xmlHttp.onreadystatechange=function()
+      {
+   if(xmlHttp.readyState==4)
+        {
+     xThis.callback(xmlHttp.responseText);
+     }
+      }
+    xmlHttp.open(this.method.toUpperCase(),this.url,false);
+    xmlHttp.send(null);
+ } 
+
+Ajax("./123.txt",showTxtPre);
+
+
+function showTxtPre(txtData){
+  t=txtData.replace(/\s+/g,'').replace(/\r\n/g,'').replace(/　　/g,'').substr(1,2000);
+  //在上面这句最后的substr的参数里设定需要开始的位置和字数。
+  //演示的是从1开始，取2000个除掉空白和换行外的字符。
+  document.getElementById("showTxt").innerHTML=t;
+}
+
+
+</script>
+  </body>
+  </html>
